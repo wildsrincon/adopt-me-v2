@@ -18,13 +18,13 @@ const queryClient = new QueryClient({
 const App = () => {
   const adoptedPet = useState(null);
   return (
-    <>
+    <div className="p-0 m-0" style={{ background: "url(http://pets-images.dev-apis.com/pets/wallpaperB.jpg)", height: "100vh" }}>
       <BrowserRouter>
         <AdoptedPetContext.Provider value={adoptedPet}>
           <QueryClientProvider client={queryClient}>
-            <header>
+            <header className='flex justify-center align-center'>
               <Link to="/">
-                <h1>Adopt Me!</h1>
+                <img className='mt-1' src="http://static.frontendmasters.com/resources/2019-05-02-complete-intro-react-v5/image-logo.png" alt="logo" width="200" />
               </Link>
             </header>
             <Routes>
@@ -34,7 +34,7 @@ const App = () => {
           </QueryClientProvider>
         </AdoptedPetContext.Provider>
       </BrowserRouter>
-    </>
+    </div>
   );
 };
 

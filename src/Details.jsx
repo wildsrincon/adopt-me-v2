@@ -26,10 +26,10 @@ const Details = () => {
   const handleBack = () => navigate('/', { replace: true });
 
   return (
-    <div className="details">
+    <div className="my-0 mx-auto w-11/12 bg-red-100 rounded-md">
       <Carousel images={pet.images} />
       <div>
-        <h1>{pet.name}</h1>
+        <h1 className='text-center text-black font-bold text-[60px] my-2'>{pet.name}</h1>
         <h2>{`${pet.animal} — ${pet.breed} — ${pet.city}, ${pet.state}`}</h2>
         <button onClick={() => setShowModal(true)}>Adopt {pet.name}</button>
         <button style={{ marginTop: 10 }} onClick={handleBack}>
