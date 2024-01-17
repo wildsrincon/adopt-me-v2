@@ -28,14 +28,14 @@ const Details = () => {
   return (
     <div className="my-0 mx-auto w-11/12 bg-red-100 rounded-md">
       <Carousel images={pet.images} />
-      <div>
-        <h1 className='text-center text-black font-bold text-[60px] my-2'>{pet.name}</h1>
+      <div className='flex flex-col justify-center items-center'>
+        <h1 className='text-center text-black font-bold text-[60px] mt-2'>{pet.name}</h1>
         <h2>{`${pet.animal} — ${pet.breed} — ${pet.city}, ${pet.state}`}</h2>
-        <button onClick={() => setShowModal(true)}>Adopt {pet.name}</button>
-        <button style={{ marginTop: 10 }} onClick={handleBack}>
+        <button className='button' onClick={() => setShowModal(true)}>Adopt {pet.name}</button>
+        <button className='button' onClick={handleBack}>
           Go Home
         </button>
-        <p>{pet.description}</p>
+        <p className='pb-4 mx-5 text-justify'>{pet.description}</p>
         {showModal ? (
           <Modal>
             <div>
