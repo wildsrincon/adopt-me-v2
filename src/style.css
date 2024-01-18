@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 @layer components {
   .search-input {
@@ -13,6 +13,7 @@
     @apply rounded px-6 py-2 my-3 flex justify-center items-center text-white hover:opacity-50 border-none bg-orange-500;
   }
 }
+
 @layer utilities {
   .grayed-out-disabled {
     @apply disabled:opacity-50;
