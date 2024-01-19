@@ -39,17 +39,22 @@ const Details = () => {
         {showModal ? (
           <Modal>
             <div>
-              <h1>Would you like to adopt {pet.name}?</h1>
-              <div className="buttons">
-                <button
-                  onClick={() => {
-                    setAdoptedPet(pet);
-                    navigate('/');
-                  }}
-                >
-                  Yes
-                </button>
-                <button onClick={() => setShowModal(false)}>No</button>
+              <div className='flex justify-center items-center h-screen bg-gray-800 bg-opacity-90 z-10'>
+                <div className='bg-red-100 p-24 rounded'>
+                  <h1 className='text-center text-black font-bold font-24'>Would you like to adopt {pet.name}?</h1>
+                  <div className='flex justify-center items-center gap-5'>
+                    <button
+                      className='button'
+                      onClick={() => {
+                        setAdoptedPet(pet);
+                        navigate('/');
+                      }}
+                    >
+                      Yes
+                    </button>
+                    <button className='button' onClick={() => setShowModal(false)}>No</button>
+                  </div>
+                </div>
               </div>
             </div>
           </Modal>
