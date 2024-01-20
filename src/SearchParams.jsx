@@ -20,9 +20,9 @@ const SearchParams = () => {
   const pets = results?.data?.pets ?? [];
 
   return (
-    <div className="my-0 mx-auto w-11/12">
+    <div className="container mx-auto mt-2 w-11/12 lg:flex gap-3 overflow-hidden">
       <form
-        className='p-10 mb-10 mt-2 rounded-lg bg-gray-200 shadow-lg flex flex-col justify-center items-center'
+        className='w-full lg:w-96 h-80 p-10 mb-10 rounded-lg bg-red-100 shadow-lg flex flex-col justify-center items-center'
         onSubmit={(e) => {
           e.preventDefault();
           const formData = new FormData(e.target);
