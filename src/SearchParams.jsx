@@ -22,7 +22,7 @@ const SearchParams = () => {
   return (
     <div className="container mx-auto mt-2 w-11/12 lg:flex gap-3 overflow-hidden">
       <form
-        className='w-full lg:w-96 h-80 p-10 mb-10 rounded-lg bg-red-100 shadow-lg flex flex-col justify-center items-center'
+        className='w-full lg:w-96 h-1/4 p-10 mb-10 rounded-lg bg-red-100 shadow-lg flex flex-col justify-center items-center'
         onSubmit={(e) => {
           e.preventDefault();
           const formData = new FormData(e.target);
