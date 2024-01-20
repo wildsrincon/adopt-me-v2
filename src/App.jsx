@@ -18,7 +18,7 @@ const queryClient = new QueryClient({
 const App = () => {
   const adoptedPet = useState(null);
   return (
-    <div className="container mx-auto h-screen" style={{ backgroundImage: "url(http://pets-images.dev-apis.com/pets/wallpaperA.jpg)" }}>
+    <div className="container mx-auto h-screen overflow-auto" style={{ backgroundImage: "url(http://pets-images.dev-apis.com/pets/wallpaperA.jpg)" }}>
       <BrowserRouter>
         <AdoptedPetContext.Provider value={adoptedPet}>
           <QueryClientProvider client={queryClient}>
