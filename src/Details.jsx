@@ -26,7 +26,7 @@ const Details = () => {
   const handleBack = () => navigate('/', { replace: true });
 
   return (
-    <div className="my-0 mx-auto w-11/12 bg-red-100 rounded-md">
+    <div className="container mx-auto w-11/12 bg-red-100 rounded-md pt-1">
       <Carousel images={pet.images} />
       <div className='flex flex-col justify-center items-center'>
         <h1 className='text-center text-black font-bold text-[60px] mt-2'>{pet.name}</h1>
@@ -39,8 +39,8 @@ const Details = () => {
         {showModal ? (
           <Modal>
             <div>
-              <div className='flex justify-center items-center h-screen bg-gray-800 bg-opacity-90 z-10'>
-                <div className='bg-red-100 p-24 rounded'>
+              <div className='flex justify-center items-center w-full h-screen fixed bg-gray-800 bg-opacity-90 z-20'>
+                <div className='w-full md:w-1/2 lg:w-1/3 bg-red-100 p-12 mx-6 sm:mx-12 md:mx-18 rounded'>
                   <h1 className='text-center text-black font-bold font-24'>Would you like to adopt {pet.name}?</h1>
                   <div className='flex justify-center items-center gap-5'>
                     <button

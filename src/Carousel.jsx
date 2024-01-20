@@ -1,42 +1,31 @@
-import { Component } from 'react';
+import React, { useState } from 'react';
 
-class Carousel extends Component {
-  state = {
-    active: 0,
+const Carousel = ({ images }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const handleThumbnailClick = (index) => {
+    setCurrentImageIndex(index);
   };
 
-  static defaultProps = {
-    images: ['http://pets-images.dev-apis.com/pets/none.jpg'],
-  };
-
-  handleIndexClick = (event) => {
-    this.setState({
-      active: +event.target.dataset.index,
-    });
-  };
-
-  render() {
-    const { active } = this.state;
-    const { images } = this.props;
-    return (
-      <div className="flex justify-around align-center h-80 mt-2">
-        <img className='max-w-[45%] max-h-96 mt-4' src={images[active]} alt="animal" />
-        <div className="w-1/2 flex justify-center items-center">
-          {images.map((photo, index) => (
-            // eslint-disable-next-line
-            <img
-              key={photo}
-              src={photo}
-              className='w-32 h-32 rounded-full inline-block m-4 cursor-pointer border-2 border-black'
-              alt="animal thumbnail"
-              onClick={this.handleIndexClick}
-              data-index={index}
-            />
-          ))}
-        </div>
+  return (
+    <div className="max-w-2xl mx-auto mt-8 relative px-3">
+      <div className="w-full h-96 overflow-hidden">
+        <img className='w-full h-full object-cover' src={images[currentImageIndex]} alt={`carousel-${currentImageIndex}`} />
       </div>
-    );
-  }
-}
+
+      <div className="flex justify-center mt-4">
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`w-24 h-24 mx-1 cursor-pointer  ${index === currentImageIndex ? 'active' : ''}`}
+            onClick={() => handleThumbnailClick(index)}
+          >
+            <img src={image} alt={`thumbnail-${index}`} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default Carousel;
