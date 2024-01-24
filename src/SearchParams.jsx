@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useDeferredValue, useMemo, useTransition } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import AdoptedPetContext from './AdoptedPetContext';
 import fetchSearch from './fetchSearch';
@@ -15,9 +15,15 @@ const SearchParams = () => {
   });
   const [animal, setAnimal] = useState('');
   const [breeds] = useBreedList(animal);
+  const [isPending, startTransition] = useTransition();
 
   const results = useQuery(['search', requestParams], fetchSearch);
   const pets = results?.data?.pets ?? [];
+  const deferredPets = useDeferredValue(pets);
+  const renderedPets = useMemo(
+    () => <Results pets={deferredPets} />,
+    [deferredPets]
+  );
 
   return (
     <div className="container mx-auto mt-2 w-11/12 lg:flex gap-3 overflow-hidden">
@@ -31,7 +37,9 @@ const SearchParams = () => {
             breed: formData.get('breed') ?? '',
             location: formData.get('location') ?? '',
           };
-          setRequestParams(obj);
+          startTransition(() => {
+            setRequestParams(obj);
+          })
         }}
       >
         {adoptedPet ? (
@@ -73,10 +81,17 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
-
-        <button className='rounded px-6 py-2 text-white hover:opacity-50 border-none bg-orange-500' >Submit</button>
+        {
+          isPending ? (
+            <div className="mx-auto h-screen flex justify-center items-center p-4">
+              <h2 className="animate-spin text-[100px]">🌀</h2>
+            </div>
+          ) : (
+            <button className='rounded px-6 py-2 text-white hover:opacity-50 border-none bg-orange-500' >Submit</button>
+          )
+        }
       </form>
-      <Results pets={pets} />
+      {renderedPets}
     </div>
   );
 };
