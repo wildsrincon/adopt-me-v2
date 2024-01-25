@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import { SetStateAction, useState } from 'react';
 
-const Carousel = ({ images }) => {
+interface Iprops {
+  images: string[]
+}
+
+const Carousel = ({ images }: Iprops) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const handleThumbnailClick = (index) => {
+  const handleThumbnailClick = (index: SetStateAction<number>) => {
     setCurrentImageIndex(index);
   };
 

@@ -1,10 +1,11 @@
 import { useState, useContext, useDeferredValue, useMemo, useTransition } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { Animal } from './APIResponseTypes';
 import AdoptedPetContext from './AdoptedPetContext';
 import fetchSearch from './fetchSearch';
 import Results from './Results';
 import useBreedList from './useBreedList';
-const ANIMALS = ['bird', 'cat', 'dog', 'rabbit', 'reptile'];
+const ANIMALS: Animal[] = ['bird', 'cat', 'dog', 'rabbit', 'reptile'];
 
 const SearchParams = () => {
   const [adoptedPet] = useContext(AdoptedPetContext);
@@ -13,10 +14,8 @@ const SearchParams = () => {
     animal: '',
     breed: '',
   });
-  const [animal, setAnimal] = useState('');
+  const [animal, setAnimal] = useState('' as Animal);
   const [breeds] = useBreedList(animal);
-  const [isPending, startTransition] = useTransition();
-
   const results = useQuery(['search', requestParams], fetchSearch);
   const pets = results?.data?.pets ?? [];
   const deferredPets = useDeferredValue(pets);
@@ -31,15 +30,13 @@ const SearchParams = () => {
         className='w-full lg:w-96 h-1/4 p-10 mb-10 rounded-lg bg-red-100 shadow-lg flex flex-col justify-center items-center'
         onSubmit={(e) => {
           e.preventDefault();
-          const formData = new FormData(e.target);
+          const formData = new FormData(e.currentTarget);
           const obj = {
-            animal: formData.get('animal') ?? '',
-            breed: formData.get('breed') ?? '',
-            location: formData.get('location') ?? '',
+            animal: formData.get("animal")?.toString() ?? "",
+            breed: formData.get("breed")?.toString() ?? "",
+            location: formData.get("location")?.toString() ?? "",
           };
-          startTransition(() => {
-            setRequestParams(obj);
-          })
+          setRequestParams(obj);
         }}
       >
         {adoptedPet ? (
@@ -58,8 +55,8 @@ const SearchParams = () => {
             className='search-input'
             id="animal"
             name="animal"
-            onChange={(e) => setAnimal(e.target.value)}
-            onBlur={(e) => setAnimal(e.target.value)}
+            onChange={(e) => setAnimal(e.target.value as Animal)}
+            onBlur={(e) => setAnimal(e.target.value as Animal)}
           >
             <option />
             {ANIMALS.map((animal) => (
@@ -81,15 +78,7 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
-        {
-          isPending ? (
-            <div className="mx-auto h-screen flex justify-center items-center p-4">
-              <h2 className="animate-spin text-[100px]">🌀</h2>
-            </div>
-          ) : (
-            <button className='rounded px-6 py-2 text-white hover:opacity-50 border-none bg-orange-500' >Submit</button>
-          )
-        }
+        <button className='rounded px-6 py-2 text-white hover:opacity-50 border-none bg-orange-500' >Submit</button>
       </form>
       {renderedPets}
     </div>

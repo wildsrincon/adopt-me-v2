@@ -1,19 +1,27 @@
-import { useState, useContext, lazy } from 'react';
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { PetAPIResponse } from './APIResponseTypes';
 import ErrorBoundary from './ErrorBoundary';
 import AdoptedPetContext from './AdoptedPetContext';
 import Carousel from './Carousel';
+import Modal from "./Modal";
 import fetchPet from './fetchPet';
 
-const Modal = lazy(() => import('./Modal'));
-
 const Details = () => {
+  const { id } = useParams();
+
+  if (!id) {
+    throw new Error('no id provided');
+  }
+
   const [showModal, setShowModal] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unused-vars
   const [_, setAdoptedPet] = useContext(AdoptedPetContext);
-  const { id } = useParams();
   const navigate = useNavigate();
   const results = useQuery<PetAPIResponse>(['details', id], fetchPet);
 
@@ -26,11 +34,12 @@ const Details = () => {
   }
 
   const pet = results?.data?.pets[0];
-  const handleBack = () => navigate('/', { replace: true });
 
   if (!pet) {
     throw new Error('pet not found')
   }
+
+  const handleBack = () => navigate('/', { replace: true });
 
   return (
     <div className="container mx-auto w-11/12 bg-red-100 rounded-md pt-1">
@@ -71,10 +80,10 @@ const Details = () => {
   );
 };
 
-export default function DetailsErrorBoundary(props) {
+export default function DetailsErrorBoundary() {
   return (
     <ErrorBoundary>
-      <Details {...props} />
+      <Details />
     </ErrorBoundary>
   );
 }
