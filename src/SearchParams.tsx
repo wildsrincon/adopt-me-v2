@@ -1,4 +1,4 @@
-import { useState, useContext, useDeferredValue, useMemo, useTransition } from 'react';
+import { useState, useContext, useDeferredValue, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Animal } from './APIResponseTypes';
 import AdoptedPetContext from './AdoptedPetContext';
