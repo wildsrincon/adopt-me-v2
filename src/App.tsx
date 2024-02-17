@@ -24,7 +24,7 @@ const App = () => {
           <QueryClientProvider client={queryClient}>
             <header className='flex justify-center align-center'>
               <Link to="/">
-                <img className='mt-1' src="http://static.frontendmasters.com/resources/2019-05-02-complete-intro-react-v5/image-logo.png" alt="logo" width="200" />
+                <img className='mt-1' src="https://static.frontendmasters.com/resources/2019-05-02-complete-intro-react-v5/image-logo.png" alt="logo" width="200" />
               </Link>
             </header>
             <Routes>
