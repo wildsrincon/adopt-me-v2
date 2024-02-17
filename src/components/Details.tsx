@@ -42,7 +42,7 @@ const Details = () => {
   const handleBack = () => navigate('/', { replace: true });
 
   return (
-    <div className="container mx-auto w-11/12 bg-red-100 rounded-md pt-1">
+    <div className="container mx-auto w-11/12 bg-red-100 rounded-md pt-1 my-5">
       <Carousel images={pet?.images} />
       <div className='flex flex-col justify-center items-center'>
         <h1 className='text-center text-black font-bold text-[60px] mt-2'>{pet.name}</h1>
