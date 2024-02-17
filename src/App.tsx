@@ -1,11 +1,10 @@
-import { createRoot } from 'react-dom/client'
-import { useState, ReactElement } from 'react';
-import AdoptedPetContext from './AdoptedPetContext';
+import { useState } from 'react';
+import AdoptedPetContext from './context/AdoptedPetContext';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Details from "./Details";
-import SearchParams from "./SearchParams";
-import { Pet } from './APIResponseTypes';
+import Details from "./components/Details";
+import SearchParams from "./components/SearchParams";
+import { Pet } from './api/APIResponseTypes';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,7 +18,7 @@ const queryClient = new QueryClient({
 const App = () => {
   const adoptedPet = useState(null as Pet | null);
   return (
-    <div className="container mx-auto h-screen overflow-auto" style={{ backgroundImage: "url(http://pets-images.dev-apis.com/pets/wallpaperA.jpg)" }}>
+    <div className="container w-full mx-auto h-screen overflow-auto">
       <BrowserRouter>  
         <AdoptedPetContext.Provider value={adoptedPet}>
           <QueryClientProvider client={queryClient}>
@@ -39,12 +38,4 @@ const App = () => {
   );
 };
 
-const container = document.getElementById('root');
-
-if (!container) {
-  throw new Error('Failed to find the root element');
-}
-
-const root = createRoot(container);
-
-root.render(<App />);
+export default App;

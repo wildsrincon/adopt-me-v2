@@ -23,8 +23,8 @@ const Pet = (props: IProps) => {
         <img className='rounded-full' src={hero} alt={name} />
       </div>
       <div>
-        <h1 className='font-bold text-[30px]' >{name}</h1>
-        <h2>{`${animal} — ${breed} — ${location}`}</h2>
+        <h1 className='font-bold text-black text-[30px]' >{name}</h1>
+        <h2 className='font-light text-black'>{`${animal} — ${breed} — ${location}`}</h2>
       </div>
     </Link>
   );

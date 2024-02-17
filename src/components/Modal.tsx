@@ -1,4 +1,4 @@
-import { MutableRefObject, ReactElement, useEffect, useRef } from 'react';
+import { MutableRefObject, ReactNode, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
 type ModalProps = {

@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { Pet } from './APIResponseTypes';
+import { Pet } from '../api/APIResponseTypes';
 
 const AdoptedPetContext = createContext<[Pet | null, (adoptedPet: Pet | null) => void]>([
   {

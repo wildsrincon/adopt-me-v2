@@ -5,12 +5,12 @@
 import { useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { PetAPIResponse } from './APIResponseTypes';
-import ErrorBoundary from './ErrorBoundary';
-import AdoptedPetContext from './AdoptedPetContext';
+import { PetAPIResponse } from '../api/APIResponseTypes';
+import ErrorBoundary from '../utils/ErrorBoundary';
+import AdoptedPetContext from '../context/AdoptedPetContext';
 import Carousel from './Carousel';
 import Modal from "./Modal";
-import fetchPet from './fetchPet';
+import fetchPet from '../api/fetchPet';
 
 const Details = () => {
   const { id } = useParams();
@@ -33,7 +33,7 @@ const Details = () => {
     );
   }
 
-  const pet = results?.data?.pets[0];
+  const pet = results?.data?.pets?.[0];
 
   if (!pet) {
     throw new Error('pet not found')
@@ -57,7 +57,7 @@ const Details = () => {
             <div>
               <div className='flex justify-center items-center w-full h-screen fixed bg-gray-800 bg-opacity-90 z-20'>
                 <div className='w-full md:w-1/2 lg:w-1/3 bg-red-100 p-12 mx-6 sm:mx-12 md:mx-18 rounded'>
-                  <h1 className='text-center text-black font-bold font-24'>Would you like to adopt {pet.name}?</h1>
+                  <h1 className='text-center text-black text-2xl'>Would you like to adopt {pet.name}?</h1>
                   <div className='flex justify-center items-center gap-5'>
                     <button
                       className='button'

@@ -2,18 +2,25 @@
   "name": "adopt-me",
   "version": "1.0.0",
   "description": "Project for adopt pets build with React and Vite",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vite --port=3001",
     "build": "vite build",
-    "preview": "vite preview",
+    "dev": "vite",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet",
+    "preview": "vite preview",
     "typecheck": "tsc --noEmit"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "dependencies": {
+    "@tanstack/react-query": "4.10.1",
+    "express": "4.18.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-router-dom": "6.4.1"
+  },
   "devDependencies": {
     "@tailwindcss/forms": "0.5.3",
     "@types/react": "18.0.21",
@@ -30,19 +37,12 @@
     "eslint-plugin-react": "7.31.8",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-tailwindcss": "^3.14.0",
-    "postcss": "8.4.18",
+    "postcss": "^8.4.35",
     "prettier": "2.7.1",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "3.1.8",
     "typescript": "4.8.4",
-    "vite": "3.1.4"
-  },
-  "dependencies": {
-    "@tanstack/react-query": "4.10.1",
-    "express": "4.18.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-router-dom": "6.4.1"
+    "vite": "^3.2.8"
   },
   "packageManager": "yarn@3.6.1"
 }
