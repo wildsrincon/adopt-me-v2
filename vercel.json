@@ -1,11 +1,12 @@
 { 
-  "routes": [
-    { "src": "/[^.]+", "dest": "/", "status": 200 }
-  ],
   "rewrites": [
     {
       "source": "/api/pets",
       "destination": "https://pets-v2.dev-apis.com/pets"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ] 
 }
